@@ -37,19 +37,6 @@ router.post('/', (req, res) => {
         })
 })
 
-// router.put('/:id', (req, res) => {
-//     if (!req.body.description || !res.body.notes ) {
-//         res.status(400).json({ message: 'please provide a description and notes' })
-//     } else {
-//         actionModel.update(req.params.id, req.body)
-//         .then(item => {
-//             res.status(200).json(item)
-//         })
-//         .catch(item => {
-//             res.status(400).json({ message: 'error updating action'})
-//         })
-//     }
-// }) 
 router.put('/:id', (req, res) => {
     if (!req.body.description || !res.body.notes ) {
         res.status(400).json({ message: 'please provide a description and notes' })
