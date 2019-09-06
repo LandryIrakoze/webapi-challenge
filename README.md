@@ -26,13 +26,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+Two things of express I learned about this week are serverside routing with express, and express middleware
+
 - [ ] Describe Middleware?
+
+Middleware is something that can intercept an action, and change or do something to it before it happens
 
 - [ ] Describe a Resource?
 
+A resource is something available for the API to use
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+API can return `HTTP` messages to let the client know whether or not a request was successful
+
 - [ ] How can we partition our application into sub-applications?
+
+We can partition our application into sub-applications by using routes
 
 ## Project Setup
 
