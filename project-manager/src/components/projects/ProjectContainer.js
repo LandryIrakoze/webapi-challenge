@@ -1,23 +1,31 @@
 import React, { useState, useEffect } from 'react';
+import { Route, NavLink } from 'react-router-dom';
 import axios from 'axios';
+import Project from './Project';
 
 const ProjectContainer = () => {
 
-    // const [myProjects, setMyProjects] = useState([]);
+    const [projects, setProjects] = useState([]);
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/projects')
             .then(res => {
-                console.log('res', res)
+                setProjects(res.data);
             })
             .catch(error => {
-                console.log(error)
+                console.error(error)
             })
     },[])
 
     return (
         <>
+            projects.map(item => (
+                <NavLink to="/projects/`${projects.id}`">
+                    <Project info={projects}/>
+                </NavLink>
+            ))
             ProjectContainer
+            <Route exact path="/projects/:id" render={props => <Project {...props} info={projects} />} />
         </>
     )
 }
