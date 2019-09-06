@@ -1,13 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Route } from 'react-router-dom';
 import './App.css';
 
 import ProjectContainer from './components/projects/ProjectContainer';
+import ActionContainer from './components/actions/ActionContainer';
 
 function App() {
   return (
     <div className="App">
-      <ProjectContainer/>
+      <Route exact path='/projects' render={props => <ProjectContainer {...props} />} />
+      <Route exact path='/actions' render={props => <ActionContainer {...props} />} />
     </div>
   );
 }
