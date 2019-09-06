@@ -16,12 +16,16 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     actionModel.get(req.params.id)
         .then(item => {
-            res.status(200).json(item)
+            if (item) {
+                res.status(200).json(item)
+            } else {
+                res.status(400).json({ message: 'invalid id' })
+            }
         })
         .catch(item => {
             res.status(400).json({ message: 'error retrieving action' })
         })
-})
+}) 
 
 router.post('/', (req, res) => {
     actionModel.insert(req.body)
@@ -33,28 +37,49 @@ router.post('/', (req, res) => {
         })
 })
 
+// router.put('/:id', (req, res) => {
+//     if (!req.body.description || !res.body.notes ) {
+//         res.status(400).json({ message: 'please provide a description and notes' })
+//     } else {
+//         actionModel.update(req.params.id, req.body)
+//         .then(item => {
+//             res.status(200).json(item)
+//         })
+//         .catch(item => {
+//             res.status(400).json({ message: 'error updating action'})
+//         })
+//     }
+// }) 
 router.put('/:id', (req, res) => {
-    if (!req.body) {
+    if (!req.body.description || !res.body.notes ) {
         res.status(400).json({ message: 'please provide a description and notes' })
     } else {
         actionModel.update(req.params.id, req.body)
-        .then(item => {
-            res.status(200).json(item)
-        })
-        .catch(item => {
-            res.status(400).json({ message: 'error updating user'})
-        })
+            .then(item => {
+                if (item) {
+                    res.status(200).json(item)
+                } else {
+                    res.status(400).json({ message: 'invalid id' })
+                }
+            })
+            .catch(item => {
+                res.status(400).json({ message: 'error updating action'})
+            })
     }
-}) //update
+}) 
 
 router.delete('/:id', (req, res) => {
     actionModel.remove(req.params.id)
         .then(item => {
-            res.status(200).json(item)
+            if (item) {
+                res.status(200).json(item)
+            } else {
+                res.status(400).json({ message: 'invalid id' })
+            }
         })
         .catch(item => {
-            res.status(400).json({ message: 'error deleting user' })
+            res.status(400).json({ message: 'error deleting actions' })
         })
-})
+}) 
 
 module.exports = router;
